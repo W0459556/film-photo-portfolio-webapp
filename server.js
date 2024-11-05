@@ -1,7 +1,7 @@
-// server.js
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors'; // Import the CORS package
 
 // Load environment variables from .env file
 dotenv.config();
@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON requests
 app.use(express.json());
+
+// Use CORS middleware
+app.use(cors());
 
 // Import photo routes
 import photoRoutes from './routes/film_photos.js'; // Ensure the file extension is included

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Photo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Edit Photo</h2>
+        <form id="editForm" enctype="multipart/form-data">
+            <!-- Film Info -->
+            <div class="form-group">
+                <label>Film Brand</label>
+                <input type="text" class="form-control" id="filmBrand" required>
+            </div>
+            <div class="form-group">
+                <label>Film Name</label>
+                <input type="text" class="form-control" id="filmName" required>
+            </div>
+            <div class="form-group">
+                <label>Film Speed (ISO)</label>
+                <input type="number" class="form-control" id="filmSpeed" required>
+            </div>
+            <div class="form-group">
+                <label>Film Type</label>
+                <select class="form-control" id="filmType" required>
+                    <option>Colour</option>
+                    <option>Black & White</option>
+                    <option>Negative</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Film Processing</label>
+                <select class="form-control" id="filmProcessing" required>
+                    <option>C-41</option>
+                    <option>E-6</option>
+                    <option>B&W</option>
+                    <option>other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Film Format</label>
+                <select class="form-control" id="filmFormat" required>
+                    <option>35mm</option>
+                    <option>120</option>
+                    <option>large format</option>
+                    <option>other</option>
+                </select>
+            </div>
+
+            <!-- Camera Info -->
+            <div class="form-group">
+                <label>Camera Brand</label>
+                <input type="text" class="form-control" id="cameraBrand" required>
+            </div>
+            <div class="form-group">
+                <label>Camera Body</label>
+                <input type="text" class="form-control" id="cameraBody" required>
+            </div>
+            <div class="form-group">
+                <label>Camera Lens</label>
+                <input type="text" class="form-control" id="cameraLens" required>
+            </div>
+            <div class="form-group">
+                <label>Camera Settings</label>
+                <input type="text" class="form-control" id="cameraSettings" required>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="form-group">
+                <label>Comments</label>
+                <textarea class="form-control" id="comments" maxlength="500"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Photo Location</label>
+                <input type="text" class="form-control" id="photoLocation" maxlength="100">
+            </div>
+
+            <!-- Photo Uploads -->
+            <div class="form-group">
+                <label>Upload New Photos (.png only)</label>
+                <input type="file" class="form-control" id="newPhotos" accept="image/png" multiple>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="submitEdit()">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const photoId = params.get('id');
+
+        function loadPhotoDetails() {
+            fetch(`http://localhost:3000/api/photos/${photoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Fill form fields with the fetched data
+                    document.getElementById('filmBrand').value = data.film.film_brand;
+                    document.getElementById('filmName').value = data.film.film_name;
+                    document.getElementById('filmSpeed').value = data.film.film_speed;
+                    document.getElementById('filmType').value = data.film.film_type;
+                    document.getElementById('filmProcessing').value = data.film.film_processing;
+                    document.getElementById('filmFormat').value = data.film.film_format;
+                    document.getElementById('cameraBrand').value = data.camera.camera_brand;
+                    document.getElementById('cameraBody').value = data.camera.camera_body;
+                    document.getElementById('cameraLens').value = data.camera.camera_lens;
+                    document.getElementById('cameraSettings').value = data.camera.camera_settings;
+                    document.getElementById('comments').value = data.comments;
+                    document.getElementById('photoLocation').value = data.photo_location;
+                })
+                .catch(error => console.error('Error loading photo details:', error));
+        }
+
+        function submitEdit() {
+            const formData = new FormData();
+            formData.append('film[film_brand]', document.getElementById('filmBrand').value);
+            formData.append('film[film_name]', document.getElementById('filmName').value);
+            formData.append('film[film_speed]', document.getElementById('filmSpeed').value);
+            formData.append('film[film_type]', document.getElementById('filmType').value);
+            formData.append('film[film_processing]', document.getElementById('filmProcessing').value);
+            formData.append('film[film_format]', document.getElementById('filmFormat').value);
+            formData.append('camera[camera_brand]', document.getElementById('cameraBrand').value);
+            formData.append('camera[camera_body]', document.getElementById('cameraBody').value);
+            formData.append('camera[camera_lens]', document.getElementById('cameraLens').value);
+            formData.append('camera[camera_settings]', document.getElementById('cameraSettings').value);
+            formData.append('comments', document.getElementById('comments').value);
+            formData.append('photo_location', document.getElementById('photoLocation').value);
+
+            const newPhotos = document.getElementById('newPhotos').files;
+            for (let i = 0; i < newPhotos.length; i++) {
+                formData.append('photos', newPhotos[i]);
+            }
+
+            fetch(`http://localhost:3000/api/photos/${photoId}`, {
+                method: 'PATCH',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => alert('Photo updated successfully!'))
+            .catch(error => console.error('Error updating photo:', error));
+        }
+
+        loadPhotoDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Photo Portfolio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const PhotoGallery = () => {
+            const [photos, setPhotos] = useState([]);
+
+            useEffect(() => {
+                const fetchPhotos = async () => {
+                    try {
+                        const response = await fetch('http://localhost:3000/api/photos'); // Fetch from your API
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        const data = await response.json();
+                        setPhotos(data);
+                    } catch (error) {
+                        console.error('Error fetching photos:', error);
+                    }
+                };
+
+                fetchPhotos();
+            }, []);
+
+            return (
+                <div className="container mt-4">
+                    <h2>Photo Gallery</h2>
+                    <div className="row">
+                        {photos.map((photo, index) => (
+                            <div className="col-md-4 mb-4" key={index}>
+                                <div className="card">
+                                    <img
+                                        src={`./images/${photo.photos[0]}`} // Adjust path as needed
+                                        className="card-img-top"
+                                        alt={`Photo by ${photo.camera.camera_brand} ${photo.camera.camera_body}`}
+                                    />
+                                    <div className="card-body">
+                                        <h5 className="card-title">Film: {photo.film.film_name}</h5>
+                                        <p className="card-text">
+                                            Brand: {photo.film.film_brand}<br />
+                                            Comments: {photo.comments}<br />
+                                            Location: {photo.photo_location}
+                                        </p>
+                                        <a 
+                                          href={`/src/photo-detail.html?id=${photo._id}`} 
+                                          className="btn btn-primary"
+                                        >
+                                          Edit
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // Create a root and render the PhotoGallery component
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PhotoGallery />);
+    </script>
+</body>
+</html>
