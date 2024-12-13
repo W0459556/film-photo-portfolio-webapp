@@ -31,7 +31,6 @@ const App = () => {
             <Route path="/signin" element={<SignIn checkLoginFunc={checkLoginFunc} />} />
             <Route path="/register" element={<Register checkLoginFunc={checkLoginFunc} />} />
             <Route element={<ProtectedRoutes />}>
-              <Route path="/dummy" element={<Dummy />} />
               <Route path="/createform" element={<CreateForm />} />
               <Route path="/edit/:id" element={<EditForm />} />
             </Route>
