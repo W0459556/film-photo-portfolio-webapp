@@ -1,0 +1,25 @@
+JG.repeat(5, 10, {
+  id: JG.objectId(),
+  
+    film: {
+    film_brand: JG.company(),
+    film_name: JG.company(),
+    film_speed: JG.random(12,16,20,25,32,40,50,64,80,100,125,160,200,250,320,400,500,640,800,1000,1250,1600),
+    film_type: JG.random('Negative','Slide','Instant','Black and White'),
+    film_processing: JG.random('C-41','B/W','E-6'),
+    film_format: JG.random('35mm','110','120', 'Large Format', 'Instant'),
+  },
+  
+  
+	camera: {
+      camera_brand: JG.company(),
+      camera_body: JG.company(),
+      camera_lens: JG.random('Fish-Eye 7.5mm f/5.6','New FD 14mm f/2.8L','FD 24mm f/1.4 S.S.C. ASPHERICAL', 'FD 28mm f/3.5 S.C.', 'FD 35mm f/3.5 S.S.C.','FD 50mm f/1.4','New FD 50mm f/1.8','FD 50mm f/3.5 S.S.C. Macro','Soft-focus FD 85mm f/2.8','New FD 100mm f/4 Macro','New FD 200mm f/1.8L','New 300mm f/4L'),
+      camera_settings: JG.loremIpsum({ units: 'sentences', count: 1 }),
+  },
+ 
+  comments: JG.loremIpsum({ units: 'sentences', count: 3 }),
+  photo_location: JG.city(),
+  photos: JG.repeat(2,5,(JG.guid())+".png"),
+ });
+

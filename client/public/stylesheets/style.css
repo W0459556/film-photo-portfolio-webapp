@@ -1,0 +1,125 @@
+.rainbow:hover {
+  -webkit-animation: rainbow 10s infinite;
+  -ms-animation: rainbow 10s infinite;
+  -o-animation: rainbow 10s infinite;
+  animation: rainbow 10s infinite;
+}
+
+@-webkit-keyframes rainbow {
+  0% { color: #b33a3a; } 
+  10% { color: #b3621f; } 
+  20% { color: #b3b33a; } 
+  30% { color: #6ab33a; } 
+  40% { color: #3ab34d; } 
+  50% { color: #3ab3a1; } 
+  60% { color: #3a66b3; } 
+  70% { color: #4d3ab3; } 
+  80% { color: #7a3ab3; } 
+  90% { color: #b33a78; } 
+  100% { color: #b33a3a; } 
+}
+
+@-ms-keyframes rainbow {
+  0% { color: #b33a3a; }
+  10% { color: #b3621f; }
+  20% { color: #b3b33a; }
+  30% { color: #6ab33a; }
+  40% { color: #3ab34d; }
+  50% { color: #3ab3a1; }
+  60% { color: #3a66b3; }
+  70% { color: #4d3ab3; }
+  80% { color: #7a3ab3; }
+  90% { color: #b33a78; }
+  100% { color: #b33a3a; }
+}
+
+@-o-keyframes rainbow {
+  0% { color: #b33a3a; }
+  10% { color: #b3621f; }
+  20% { color: #b3b33a; }
+  30% { color: #6ab33a; }
+  40% { color: #3ab34d; }
+  50% { color: #3ab3a1; }
+  60% { color: #3a66b3; }
+  70% { color: #4d3ab3; }
+  80% { color: #7a3ab3; }
+  90% { color: #b33a78; }
+  100% { color: #b33a3a; }
+}
+
+@keyframes rainbow {
+  0% { color: #b33a3a; }
+  10% { color: #b3621f; }
+  20% { color: #b3b33a; }
+  30% { color: #6ab33a; }
+  40% { color: #3ab34d; }
+  50% { color: #3ab3a1; }
+  60% { color: #3a66b3; }
+  70% { color: #4d3ab3; }
+  80% { color: #7a3ab3; }
+  90% { color: #b33a78; }
+  100% { color: #b33a3a; }
+}
+
+.rainbow-pastel:hover {
+  -webkit-animation: rainbow-pastel 10s infinite;
+  -ms-animation: rainbow-pastel 10s infinite;
+  -o-animation: rainbow-pastel 10s infinite;
+  animation: rainbow-pastel 10s infinite;
+}
+
+@-webkit-keyframes rainbow-pastel {
+  0% { color: #f6a5a5; }  /* pastel red */
+  10% { color: #f6b98e; } /* pastel orange */
+  20% { color: #e8f68e; } /* pastel yellow */
+  30% { color: #a9f68e; } /* pastel green */
+  40% { color: #8ef6b0; } /* pastel teal */
+  50% { color: #8ed6f6; } /* pastel light blue */
+  60% { color: #a58ef6; } /* pastel purple */
+  70% { color: #f58ef6; } /* pastel pink */
+  80% { color: #f6a6e2; } /* pastel rose */
+  90% { color: #f6a5a5; } /* pastel red again */
+  100% { color: #f6a5a5; } /* pastel red again */
+}
+
+@-ms-keyframes rainbow-pastel {
+  0% { color: #f6a5a5; }
+  10% { color: #f6b98e; }
+  20% { color: #e8f68e; }
+  30% { color: #a9f68e; }
+  40% { color: #8ef6b0; }
+  50% { color: #8ed6f6; }
+  60% { color: #a58ef6; }
+  70% { color: #f58ef6; }
+  80% { color: #f6a6e2; }
+  90% { color: #f6a5a5; }
+  100% { color: #f6a5a5; }
+}
+
+@-o-keyframes rainbow-pastel {
+  0% { color: #f6a5a5; }
+  10% { color: #f6b98e; }
+  20% { color: #e8f68e; }
+  30% { color: #a9f68e; }
+  40% { color: #8ef6b0; }
+  50% { color: #8ed6f6; }
+  60% { color: #a58ef6; }
+  70% { color: #f58ef6; }
+  80% { color: #f6a6e2; }
+  90% { color: #f6a5a5; }
+  100% { color: #f6a5a5; }
+}
+
+@keyframes rainbow-pastel {
+  0% { color: #f6a5a5; }
+  10% { color: #f6b98e; }
+  20% { color: #e8f68e; }
+  30% { color: #a9f68e; }
+  40% { color: #8ef6b0; }
+  50% { color: #8ed6f6; }
+  60% { color: #a58ef6; }
+  70% { color: #f58ef6; }
+  80% { color: #f6a6e2; }
+  90% { color: #f6a5a5; }
+  100% { color: #f6a5a5; }
+}
