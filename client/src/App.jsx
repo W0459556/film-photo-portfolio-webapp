@@ -4,7 +4,6 @@ import NavBar from './components/NavBar';
 import SignIn from './components/SignIn';
 import Footer from './components/Footer';
 import Register from './components/Register';
-import Dummy from './components/Dummy';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CreateForm from './components/CreateForm';
